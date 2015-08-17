@@ -24,7 +24,6 @@ gulp.task('jshint', function () {
   return gulp.src(paths.js)
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('jshint-stylish'))
-    // .pipe(plugins.jshint.reporter('fail')) to avoid shutdown gulp by warnings
     .pipe(count('jshint', 'files lint free'));
 });
 
