@@ -1,7 +1,10 @@
 'use strict';
 
 module.exports = {
-	db: process.env.MONGOHQ_URL || process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/project-x',
+	db: {
+        host: 'ec2-52-16-192-128.eu-west-1.compute.amazonaws.com',
+        port: 28015
+    },
 	assets: {
 		lib: {
 			css: [
