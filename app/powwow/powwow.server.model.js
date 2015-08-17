@@ -3,14 +3,14 @@
 /**
  * Module dependencies.
  */
-var	thinky = require('../utils/thinky'),
+var	thinky = require('../core/thinky'),
 	type = thinky.type,
 	r = thinky.r;
 
 /**
  * Card Schema
  */
-var Card = thinky.createModel('Card', {
+var Powwow = thinky.createModel('Powwow', {
 	time: type.date().default(r.now),
 	waitlist: type.number(),
 	platform: type.string(),
@@ -20,4 +20,4 @@ var Card = thinky.createModel('Card', {
 	game: type.string()
 },{init:true});
 
-module.exports = Card;
+module.exports = Powwow;

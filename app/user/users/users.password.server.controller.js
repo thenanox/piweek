@@ -4,9 +4,9 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-	errorHandler = require('../errors.server.controller'),
+	errorHandler = require('../../core/errors.server.controller'),
 	passport = require('passport'),
-	User = require('../../models/user.server.model.js'),
+	User = require('../user.server.model.js'),
 	config = require('../../../config/config'),
 	nodemailer = require('nodemailer'),
 	async = require('async'),

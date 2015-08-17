@@ -2,96 +2,98 @@
 /**
  * Module dependencies.
  */
-var errorHandler = require('./errors.server.controller'), Article = require('../models/article.server.model.js'), _ = require('lodash');
+var errorHandler = require('../core/errors.server.controller'), 
+    Game = require('./game.server.model.js'), 
+    _ = require('lodash');
 /**
- * Create a article
+ * Create a game
  */
 exports.create = function (req, res) {
-    var article = new Article(req.body);
-    article.user = req.user;
-    article.saveAll(function (err) {
+    var game = new Game(req.body);
+    game.user = req.user;
+    game.saveAll(function (err) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         }
         else {
-            res.json(article);
+            res.json(game);
         }
     });
 };
 /**
- * Show the current article
+ * Show the current game
  */
 exports.read = function (req, res) {
-    res.json(req.article);
+    res.json(req.game);
 };
 /**
- * Update a article
+ * Update a game
  */
 exports.update = function (req, res) {
-    var article = req.article;
-    article = _.extend(article, req.body);
-    article.saveAll(function (err) {
+    var game = req.game;
+    game = _.extend(game, req.body);
+    game.saveAll(function (err) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         }
         else {
-            res.json(article);
+            res.json(game);
         }
     });
 };
 /**
- * Delete an article
+ * Delete an game
  */
 exports.delete = function (req, res) {
-    var article = req.article;
-    article.delete(function (err) {
+    var game = req.game;
+    game.delete(function (err) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         }
         else {
-            res.json(article);
+            res.json(game);
         }
     });
 };
 /**
- * List of Articles
+ * List of games
  */
 exports.list = function (req, res) {
-    Article.get().sort('-created').populate('user', 'displayName').exec(function (err, articles) {
+    Game.get().sort('-created').populate('user', 'displayName').exec(function (err, games) {
         if (err) {
             return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
             });
         }
         else {
-            res.json(articles);
+            res.json(games);
         }
     });
 };
 /**
- * Article middleware
+ * game middleware
  */
-exports.articleByID = function (req, res, next, id) {
-    Article.get(id).populate('user', 'displayName').exec(function (err, article) {
+exports.gameByID = function (req, res, next, id) {
+    Game.get(id).populate('user', 'displayName').exec(function (err, game) {
         if (err)
             return next(err);
-        if (!article)
-            return next(new Error('Failed to load article ' + id));
-        req.article = article;
+        if (!game)
+            return next(new Error('Failed to load game ' + id));
+        req.game = game;
         next();
     });
 };
 /**
- * Article authorization middleware
+ * game authorization middleware
  */
 exports.hasAuthorization = function (req, res, next) {
-    if (req.article.user.id !== req.user.id) {
+    if (req.game.user.id !== req.user.id) {
         return res.status(403).send({
             message: 'User is not authorized'
         });
@@ -99,4 +101,4 @@ exports.hasAuthorization = function (req, res, next) {
     next();
 };
 
-//# sourceMappingURL=../controllers/articles.server.controller.js.map
+//# sourceMappingURL=../controllers/games.server.controller.js.map

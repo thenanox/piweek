@@ -4,9 +4,9 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-	errorHandler = require('../errors.server.controller'),
+	errorHandler = require('../../core/errors.server.controller'),
 	passport = require('passport'),
-	User = require('../../models/user.server.model.js');
+	User = require('../user.server.model.js');
 
 /**
  * Signup
@@ -17,7 +17,6 @@ exports.signup = function(req, res) {
 
 	// Init Variables
 	var user = new User(req.body);
-	var message = null;
 
 	// Add missing user fields
 	user.provider = 'local';

@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var passport = require('passport'),
-	User = require('../app/models/user.server.model.js'),
+	User = require('../app/user/user.server.model.js'),
 	path = require('path'),
 	config = require('./config');
 	

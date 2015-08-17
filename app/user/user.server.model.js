@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-var	thinky = require('../utils/thinky'),
+var	thinky = require('../core/thinky'),
 	type = thinky.type,
 	r = thinky.r,
 	crypto = require('crypto');

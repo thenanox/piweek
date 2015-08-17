@@ -4,9 +4,9 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-	errorHandler = require('../errors.server.controller.js'),
+	errorHandler = require('../../core/errors.server.controller.js'),
 	passport = require('passport'),
-	User = require('../../models/user.server.model.js');
+	User = require('../user.server.model.js');
 
 /**
  * Update user details
@@ -14,7 +14,6 @@ var _ = require('lodash'),
 exports.update = function(req, res) {
 	// Init Variables
 	var user = req.user;
-	var message = null;
 
 	// For security measurement we remove the roles from the req.body object
 	delete req.body.roles;

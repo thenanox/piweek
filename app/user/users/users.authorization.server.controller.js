@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var _ = require('lodash'),
-	User = require('../../models/user.server.model.js');
+	User = require('../user.server.model.js');
 
 /**
  * User middleware
