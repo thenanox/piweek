@@ -51,6 +51,14 @@ gulp.task('devServe', ['env:development'], function () {
     ignore: ['node_modules/', 'bower_components/', 'logs/', '.DS_Store', '**/.DS_Store', '.bower-*', '**/.bower-*'],
     nodeArgs: ['--debug'],
     stdout: false
+  }).on('readable', function() {
+    this.stdout.on('data', function(chunk) {
+      if(/REAN/.test(chunk)) {
+        setTimeout(function() { plugins.livereload.reload(); }, 500);
+      }
+      process.stdout.write(chunk);
+    });
+    this.stderr.pipe(process.stderr);
   });
 });
 
