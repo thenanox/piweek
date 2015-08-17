@@ -6,11 +6,11 @@ var gulp = require('gulp'),
   gutil = require('gulp-util'),
   plugins = gulpLoadPlugins(),
   paths = {
-    js: ['./*.js', 'config/**/*.js', 'gulp/**/*.js', 'tools/**/*.js', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
-    html: ['packages/**/*.html', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
-    css: ['packages/**/*.css', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
-    less: ['packages/**/*.less', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**'],
-    sass: ['packages/**/*.scss', '!packages/**/node_modules/**', '!packages/**/assets/**/lib/**']
+    js: ['./*.js', 'config/**/*.js', 'gulp/**/*.js', 'tools/**/*.js', 'public/**/*.js', '!public/lib/**/*.js'],
+    html: ['public/**/*.html', '!public/lib/**/*.html'],
+    css: ['public/**/*.css', '!public/lib/**/*.css'],
+    less: ['public/**/*.less', '!public/lib/**/*.less'],
+    sass: ['public/**/*.scss', '!public/lib/**/*.scss']
   };
 
 /*var defaultTasks = ['clean', 'jshint', 'less', 'csslint', 'devServe', 'watch'];*/
@@ -48,17 +48,9 @@ gulp.task('devServe', ['env:development'], function () {
     script: 'server.js',
     ext: 'html js',
     env: { 'NODE_ENV': 'development' } ,
-    ignore: ['node_modules/', 'bower_components/', 'logs/', 'packages/*/*/public/assets/lib/', 'packages/*/*/node_modules/', '.DS_Store', '**/.DS_Store', '.bower-*', '**/.bower-*'],
+    ignore: ['node_modules/', 'bower_components/', 'logs/', '.DS_Store', '**/.DS_Store', '.bower-*', '**/.bower-*'],
     nodeArgs: ['--debug'],
     stdout: false
-  }).on('readable', function() {
-    this.stdout.on('data', function(chunk) {
-      if(/Mean app started/.test(chunk)) {
-        setTimeout(function() { plugins.livereload.reload(); }, 500);
-      }
-      process.stdout.write(chunk);
-    });
-    this.stderr.pipe(process.stderr);
   });
 });
 
@@ -68,6 +60,7 @@ gulp.task('watch', function () {
   gulp.watch(paths.js, ['jshint']);
   gulp.watch(paths.css, ['csslint']).on('change', plugins.livereload.changed);
   gulp.watch(paths.less, ['less']);
+  gulp.watch(paths.html, ['jshint']);
 });
 
 function count(taskName, message) {
