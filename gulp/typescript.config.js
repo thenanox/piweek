@@ -3,7 +3,7 @@ var GulpConfig = (function () {
     function GulpConfig() {
         //Got tired of scrolling through all the comments so removed them
         //Don't hurt me AC :-)
-        this.source = '../app/';
+        this.source = './app/';
 
         this.tsOutputPath = this.source;
         this.allJavaScript = [this.source + '/**/*.js'];
