@@ -22,6 +22,12 @@
     },
     "passport/passport.d.ts": {
       "commit": "832c51db815c766fa42a2e995a7b3136ec6d15c2"
+    },
+    "serve-static/serve-static.d.ts": {
+      "commit": "832c51db815c766fa42a2e995a7b3136ec6d15c2"
+    },
+    "mime/mime.d.ts": {
+      "commit": "832c51db815c766fa42a2e995a7b3136ec6d15c2"
     }
   }
 }
