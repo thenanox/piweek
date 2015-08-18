@@ -1,0 +1,25 @@
+<section data-ng-controller="PowwowsController" data-ng-init="find()">
+    <div class="page-header">
+        <h1>Powwows</h1>
+    </div>
+    <div class="list-group">
+        <a data-ng-repeat="powwow in powwows" data-ng-href="#!/powwows/{{powwow._id}}" class="list-group-item">
+			<small class="list-group-item-text">
+				Posted on
+				<span data-ng-bind="powwow.time | date:'medium'"></span>
+				by
+				<span data-ng-bind="powwow.creator"></span>
+			</small>
+			<h4 class="list-group-item-heading" data-ng-bind="powwow.game"></h4>
+			<h5 class="list-group-item-heading" data-ng-bind="powwow.platform"></h5>
+            <p data-ng-bind="powwow.description"></p>
+            <small class="list-group-item-text">
+				<span data-ng-bind="powwow.slots"></span> slots left
+				(<span data-ng-bind="powwow.waitlist"></span> waiting)
+			</small>
+        </a>
+    </div>
+    <div class="alert alert-warning text-center" data-ng-hide="!powwows.$resolved || powwows.length">
+    	No Powwows yet, why don't you <a href="/#!/powwows/create">create one</a>?
+    </div>
+</section>
