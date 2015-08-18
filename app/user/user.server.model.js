@@ -18,7 +18,7 @@ var User = thinky.createModel('User',{
 	email: type.string().email(),
 	username: type.string(),
 	password: type.string(),
-	salt: type.string(),
+	salt: type.buffer(),
 	provider: type.string(),
 	providerData: {},
 	additionalProvidersData: {},
@@ -28,39 +28,38 @@ var User = thinky.createModel('User',{
 	resetPasswordToken: type.string(),
 	resetPasswordExpires: type.date(),
 	id: type.string()
-},{init : true});
+});
 
 /**
  * Create instance method for hashing a password
  */
-User.define.hashPassword = function(password) {
+User.define('hashPassword', function(password) {
     if (this.salt && password) {
         return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
     } else {
         return password;
     }
-};
+});
 
 /**
  * Create instance method for authenticating user
  */
-User.define.authenticate = function(password) {
+User.define('authenticate', function(password) {
     return this.password === this.hashPassword(password);
-};
+});
 
-/*User.pre('save', function(next) {
+User.pre('save', function(next) {
     if (this.password && this.password.length > 6) {
         this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
         this.password = this.hashPassword(this.password);
     }
-
     next();
-});*/
+});
 
 /**
  * Find possible not used username
  */
-User.defineStatic.findUniqueUsername = function(username, suffix, callback) {
+User.defineStatic('findUniqueUsername', function(username, suffix, callback) {
     var _this = this;
     var possibleUsername = username + (suffix || '');
 
@@ -77,6 +76,6 @@ User.defineStatic.findUniqueUsername = function(username, suffix, callback) {
             callback(null);
         }
     });
-};
+});
 
 module.exports = User;

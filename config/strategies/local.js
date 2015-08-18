@@ -14,12 +14,7 @@ module.exports = function() {
 			passwordField: 'password'
 		},
 		function(username, password, done) {
-			User.findOne({
-				username: username
-			}, function(err, user) {
-				if (err) {
-					return done(err);
-				}
+			User.get(username).then(function(user) {
 				if (!user) {
 					return done(null, false, {
 						message: 'Unknown user or invalid password'
@@ -30,8 +25,11 @@ module.exports = function() {
 						message: 'Unknown user or invalid password'
 					});
 				}
-
 				return done(null, user);
+			}).error(function(err){
+				if (err) {
+					return done(err);
+				}
 			});
 		}
 	));

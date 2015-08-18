@@ -14,16 +14,17 @@ var passport = require('passport'),
 module.exports = function() {
 	// Serialize sessions
 	passport.serializeUser(function(user, done) {
-		done(null, user.id);
+		done(null, user);
 	});
 
 	// Deserialize sessions
-	passport.deserializeUser(function(id, done) {
-		User.get({
-			_id: id
-		}).then(function (err, user){
-			done(err, user);
-		});
+	passport.deserializeUser(function(username, done) {
+		User.get(username).then(function (user){
+			done(null, user);
+		}).error(function(err){
+			done(err);
+			}
+		);
 	});
 
 	// Initialize strategies

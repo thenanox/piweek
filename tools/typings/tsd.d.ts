@@ -7,3 +7,4 @@
 /// <reference path="passport/passport.d.ts" />
 /// <reference path="serve-static/serve-static.d.ts" />
 /// <reference path="mime/mime.d.ts" />
+/// <reference path="rethinkdb/rethinkdb.d.ts" />
