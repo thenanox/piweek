@@ -1,0 +1,40 @@
+@font-face {
+    font-family: OstrichSansBlack;
+    src: url(../../../assets/fonts/ostrich-sans-black.ttf);
+}
+@font-face {
+    font-family: OstrichSansBold;
+    src: url(../../../assets/fonts/ostrich-sans-bold.ttf);
+}
+@font-face {
+    font-family: OstrichSansDashed;
+    src: url(../../../assets/fonts/ostrich-sans-dashed.ttf);
+}
+@font-face {
+    font-family: OstrichSansBoldInlineItalic;
+    src: url(../../../assets/fonts/ostrich-sans-inline-italic.ttf);
+}
+@font-face {
+    font-family: OstrichSansInlineRegular;
+    src: url(../../../assets/fonts/ostrich-sans-inline-regular.ttf);
+}
+@font-face {
+    font-family: OstrichSansLight;
+    src: url(../../../assets/fonts/ostrich-sans-light.ttf);
+}
+@font-face {
+    font-family: OstrichSansRegular;
+    src: url(../../../assets/fonts/ostrich-sans-regular.ttf);
+}
+@font-face {
+    font-family: OstrichSansLightRounded;
+    src: url(../../../assets/fonts/ostrich-sans-rounded.ttf);
+}
+@font-face {
+    font-family: Knewave;
+    src: url(../../../assets/fonts/knewave-webfont.ttf);
+}
+@font-face {
+    font-family: KnewaveOutline;
+    src: url(../../../assets/fonts/knewave-outline-webfont.ttf);
+}

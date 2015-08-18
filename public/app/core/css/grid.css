@@ -1,0 +1,46 @@
+/* GRID SYSTEM STYLE */
+/* Establece un contenedor con el display tipo flex. Por defecto los elementos hijos del contenedor se dispondran de izquierda a derecha de manera horizontal */
+.flex-container {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+/* Dispone a los elementos hijos de un contenedor de izquierda a derecha de manera horizontal pero a la inversa */
+.flex-container .row-reverse {
+        flex-direction: row-reverse;
+    }
+}
+/* Dispone a los elementos hijos de un contenedor de ariba a abajo de manera vertical */
+.flex-container .column {
+    flex-direction: column;
+}
+/* Dispone a los elementos hijos de un contenedor de ariba a abajo de manera vertical pero a la inversa */
+.flex-container .column-reverse {
+    flex-direction: column-reverse;
+}
+/* Centra los elementos hijos de un contenedor de manera vertical */
+.center-content {
+    align-items: center;
+    -webkit-align-items: center;
+}
+/* Centra los elementos hijos de un contenedor de manera horizontal */
+.align-center {
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+/* Centra los elementos hijos de un contenedor ocupando el espacio total del mismo */
+.align-space-around {
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+/* Alinea los elementos hijos de un contenedor al principio del mismo*/
+.align-start {
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+}
+/* Alinea los elementos hijos de un contenedor al final del mismo*/
+.align-end {
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+}

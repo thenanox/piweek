@@ -37,7 +37,12 @@
 	<!--Application CSS Files-->
 	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.css">
-	<link rel="stylesheet" href="app/core/css/core.css">
+	<link rel="stylesheet" href="app/core/css/grid.css">
+	<link rel="stylesheet" href="app/core/css/fonts.css">
+	<link rel="stylesheet" href="app/core/css/tags.css">
+	<link rel="stylesheet" href="app/core/css/utils.css">
+	<link rel="stylesheet" href="app/core/css/powwow.css">
+	<link rel="stylesheet" href="app/header/css/header.css">
 	<link rel="stylesheet" href="app/users/css/users.css">
 
 	<!-- HTML5 Shim -->
@@ -47,13 +52,9 @@
 </head>
 
 <body class="ng-cloak">
-	<header data-ng-include="'app/core/views/header.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
-	<section class="content">
-		<section class="container">
-
-	<section data-ui-view></section>
-
-		</section>
+	<header data-ng-include="'app/header/views/header.html'" class="header"></header>
+	<section class="content-app">
+		<section data-ui-view></section>
 	</section>
 
 	<!--Embedding The User Object-->
@@ -75,7 +76,7 @@
 	<script type="text/javascript" src="app/core/controllers/header.controller.js"></script>
 	<script type="text/javascript" src="app/core/controllers/home.controller.js"></script>
 	<script type="text/javascript" src="app/core/services/menus.service.js"></script>
-	<script type="text/javascript" src="app/users/users.module.js"></script>>
+	<script type="text/javascript" src="app/users/users.module.js"></script>
 	<script type="text/javascript" src="app/users/controllers/authentication.controller.js"></script>
 	<script type="text/javascript" src="app/users/controllers/password.controller.js"></script>
 	<script type="text/javascript" src="app/users/controllers/settings.controller.js"></script>
