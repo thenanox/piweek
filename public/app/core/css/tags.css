@@ -1,3 +1,27 @@
 body {
-    background-color: rgba(33, 33, 33, 0.91);
+    background-color: rgb(53, 53, 53);
+    color: #FAFAFA;
 }
+
+button {
+    cursor: pointer;
+    overflow: hidden;
+    color: inherit;
+    outline: 0;
+    white-space: nowrap;
+    box-shadow: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+button a {
+    color: inherit;
+}
+
+button a:hover, button a:focus, button a:visited, button a:active {
+    text-decoration: none;
+    color: inherit;
+}
+

@@ -1,3 +1,79 @@
 .content-app {
     margin-top: 80px;
 }
+.mask-blur {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1031;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.4);
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity .5s,visibility .5s;
+    transition: opacity .5s,visibility .5s;
+}
+.mask-blur.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.flat-btn, .raised-btn {
+    margin: 0;
+    padding: 0;
+    min-height: 36px;
+    min-width: 88px;
+    white-space: nowrap;
+    line-height: 36px;
+    font-size: 14px;
+    font-style: inherit;
+    font-variant: inherit;
+    font-family: inherit;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 3px;
+    transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
+}
+
+.flat-btn {
+    background: 0 0;
+}
+
+.flat-btn:hover {
+    background-color: rgba(158,158,158,0.2);
+}
+
+.flat-btn-primary {
+    color: #FAFAFA;
+}
+
+.flat-btn-info {
+    color: rgb(16,108,200);
+}
+
+.flat-btn-warning {
+    color: rgb(244,67,54);
+}
+
+.raised-btn {
+    color: #FAFAFA;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+}
+
+.raised-btn-primary {
+    color: #212121;
+    background-color: #FAFAFA;
+}
+
+.raised-btn-info {
+    background-color: rgb(16,108,200);
+}
+
+.raised-btn-warning {
+    background-color: rgb(244,67,54);
+}
+
