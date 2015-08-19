@@ -17,7 +17,9 @@ var Powwow = thinky.createModel('Powwow', {
 	slots: type.number(),
 	creator: type.string(),
 	description: type.string(),
-	game: type.string()
+	game: type.string(),
+	subscribers: type.array(),
+	accepted: type.array()
 });
 
 module.exports = Powwow;
