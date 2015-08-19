@@ -67,3 +67,10 @@
     -ms-justify-content: flex-end;
     justify-content: flex-end;
 }
+/* Salto de linea cuando los elementos hijos no caben en su contenedor */
+.row-wrap {
+    -webkit-flex-flow: row wrap;
+    -moz-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+}
