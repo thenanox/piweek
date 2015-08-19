@@ -15,7 +15,8 @@
         'ui.utils',
 		'core',
 		'users',
-        'powwows'
+        'powwows',
+        'sideNav'
     ]);
 
     // Setting HTML5 Location Mode
