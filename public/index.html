@@ -44,6 +44,7 @@
 	<link rel="stylesheet" href="app/core/css/powwow.css">
 	<link rel="stylesheet" href="app/header/css/header.css">
 	<link rel="stylesheet" href="app/users/css/users.css">
+	<link rel="stylesheet" href="components/sideNav/sideNav.css">
 
 	<!-- HTML5 Shim -->
 	<!--[if lt IE 9]>
@@ -52,10 +53,12 @@
 </head>
 
 <body class="ng-cloak">
-	<header data-ng-include="'app/header/views/header.html'" class="header"></header>
+	<header data-ng-include="'app/header/views/header.html'"></header>
+	<section side-nav class="flex-container column" id="menu"></section>
 	<section class="content-app">
 		<section data-ui-view></section>
 	</section>
+	<section class="mask-blur"</section>
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
@@ -63,6 +66,7 @@
 	</script>
 
 	<!--Application JavaScript Files-->
+	<script type="text/javascript" src="lib/jquery/dist/jquery.min.js"></script>
 	<script type="text/javascript" src="lib/angular/angular.js"></script>
 	<script type="text/javascript" src="lib/angular-resource/angular-resource.js"></script>
 	<script type="text/javascript" src="lib/angular-cookies/angular-cookies.js"></script>
@@ -73,9 +77,9 @@
 	<script type="text/javascript" src="lib/angular-ui-utils/ui-utils.js"></script>
 	<script type="text/javascript" src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 	<script type="text/javascript" src="app/core/core.module.js"></script>
-	<script type="text/javascript" src="app/core/controllers/header.controller.js"></script>
 	<script type="text/javascript" src="app/core/controllers/home.controller.js"></script>
 	<script type="text/javascript" src="app/core/services/menus.service.js"></script>
+	<script type="text/javascript" src="app/header/controllers/header.controller.js"></script>
 	<script type="text/javascript" src="app/users/users.module.js"></script>
 	<script type="text/javascript" src="app/users/controllers/authentication.controller.js"></script>
 	<script type="text/javascript" src="app/users/controllers/password.controller.js"></script>
@@ -85,6 +89,8 @@
 	<script type="text/javascript" src="app/powwows/powwows.module.js"></script>
 	<script type="text/javascript" src="app/powwows/controllers/powwows.controller.js"></script>
 	<script type="text/javascript" src="app/powwows/services/powwows.service.js"></script>
+	<script type="text/javascript" src="components/sideNav/sideNav.directive.js"></script>
+	<script type="text/javascript" src="components/sideNav/sideNav.service.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 
 
