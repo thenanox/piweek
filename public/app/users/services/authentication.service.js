@@ -8,7 +8,7 @@
                 var _this = this;
 
                 _this._data = {
-                    user: window.user
+                    user: ''
                 };
 
                 return _this._data;
