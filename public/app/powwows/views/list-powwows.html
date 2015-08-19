@@ -15,7 +15,7 @@
             <p data-ng-bind="powwow.description"></p>
             <small class="list-group-item-text">
 				<span data-ng-bind="powwow.slots"></span> slots left
-				(<span data-ng-bind="powwow.waitlist"></span> waiting)
+				(<span data-ng-bind="powwow.waitlist || '0'"></span> waiting)
 			</small>
         </a>
     </div>
