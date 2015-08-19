@@ -9,6 +9,7 @@ module.exports = {
 	port: process.env.PORT || 3000,
 	templateEngine: 'swig',
 	sessionSecret: 'REAN',
+	secret:'jwtsecret',
 	sessionCollection: 'sessions',
 	assets: {
 		lib: {

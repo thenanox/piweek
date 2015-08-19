@@ -38,15 +38,14 @@ exports.update = function(req, res) {
 
 	powwow = _.extend(powwow , req.body);
 
-	powwow.save(function(err) {
-		if (err) {
+	powwow.save(function(powwow) {
+			res.jsonp(powwow);
+		}).error(function(err){
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
-		} else {
-			res.jsonp(powwow);
-		}
-	});
+		});
+		
 };
 
 /**
@@ -55,15 +54,85 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
 	var powwow = req.powwow ;
 
-	powwow.remove(function(err) {
-		if (err) {
+	powwow.remove(function(powwow) {
+			res.jsonp(powwow);
+		}).error(function(err){
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
-		} else {
+		});
+};
+
+/**
+ * Update subscribers of a powwow
+ */
+exports.subscribe = function(req, res) {
+		
+	var powwow = req.powwow;
+	
+	powwow.subscribers = _.union(powwow.subscribers, req.body);
+
+	powwow.save().then(function(powwow){
 			res.jsonp(powwow);
-		}
-	});
+		}).error(function(err){
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		});
+};
+
+/**
+ * Unsuscribe from a powwow
+ */
+exports.unsubscribe = function(req, res) {
+	
+	var powwow = req.powwow;
+	
+	powwow.subscribers = _.difference(powwow.subscribers , req.body);
+
+	powwow.save().then(function(powwow){
+			res.jsonp(powwow);
+		}).error(function(err){
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		});
+};
+
+/**
+ * Accept a subscription of a powwow
+ */
+exports.accept = function(req, res) {
+	
+	var powwow = req.powwow;
+	
+	powwow.accepted = _.union(powwow.accepted, req.body);
+
+	powwow.save().then(function(powwow){
+			res.jsonp(powwow);
+		}).error(function(err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		});
+};
+
+/**
+ * Reject a subscription of a powwow
+ */
+exports.reject = function(req, res) {
+	
+	var powwow = req.powwow;
+	
+	powwow.accepted = _.difference(powwow.accepted , req.body);
+
+	powwow.save().then(function(powwow){
+			res.jsonp(powwow);
+		}).error(function(err){
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		});
 };
 
 /**
@@ -79,12 +148,19 @@ exports.list = function(req, res) {
  * powwow middleware
  */
 exports.powwowByID = function(req, res, next, id) { 
-	Powwow.findById(id).populate('user', 'displayName').exec(function(err, powwow) {
-		if (err) return next(err);
-		if (! powwow) return next(new Error('Failed to load powwow ' + id));
-		req.powwow = powwow ;
-		next();
-	});
+	
+	Powwow.get(id).run().then(function(data) {
+		if (! data){
+			return next(new Error('Failed to load powwow ' + id));	
+		} else{
+			req.powwow = data ;
+			next();
+		}
+		
+	}).error(function(err){
+		return next(err);
+	})
+		
 };
 
 /**
