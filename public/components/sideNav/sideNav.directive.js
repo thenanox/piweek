@@ -31,5 +31,5 @@
             }
         };
     }
-    angular.module('sideNav', []).directive('sideNav', ['sideNavService', sideNavDirective]);
+    angular.module('sideNavDirective', []).directive('sideNav', ['sideNavService', sideNavDirective]);
 }());

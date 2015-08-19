@@ -1,0 +1,21 @@
+.powwows-header {
+    padding: 30px 100px;
+}
+
+@media (max-width: 768px) {
+    .powwows-header {
+        padding: 30px 30px;
+    }
+}
+
+.powwows-header .filter-container {
+    width: 100%;
+}
+
+.powwows-header .search-container {
+    width: 100%;
+}
+
+.powwows-list {
+    padding: 10px 25px;
+}
