@@ -25,3 +25,14 @@ button a:hover, button a:focus, button a:visited, button a:active {
     color: inherit;
 }
 
+input {
+    background-color: transparent;
+    border: 0px;
+    border-bottom: 1px solid;
+    outline: 0;
+}
+
+input:focus {
+    border-bottom: 2px solid #CDDC39;
+}
+

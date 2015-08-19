@@ -55,11 +55,11 @@
 }
 
 .flat-btn-info {
-    color: rgb(16,108,200);
+    color: #01579B;
 }
 
 .flat-btn-warning {
-    color: rgb(244,67,54);
+    color: #BF360C;
 }
 
 .raised-btn {
@@ -73,10 +73,10 @@
 }
 
 .raised-btn-info {
-    background-color: rgb(16,108,200);
+    background-color: #01579B;
 }
 
 .raised-btn-warning {
-    background-color: rgb(244,67,54);
+    background-color: #BF360C;
 }
 
