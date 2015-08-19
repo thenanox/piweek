@@ -18,16 +18,12 @@ var User = thinky.createModel('User',{
 	email: type.string().email(),
 	username: type.string(),
 	password: type.string(),
-	salt: type.buffer(),
 	provider: type.string(),
-	providerData: {},
-	additionalProvidersData: {},
-	roles: type.string().enum(['user','admin']),
-	updated: type.date(),
 	created: type.date().default(r.now),
+	updated: type.date(),
+	salt: type.buffer(),
 	resetPasswordToken: type.string(),
-	resetPasswordExpires: type.date(),
-	id: type.string()
+	resetPasswordExpires: type.date()
 });
 
 /**
