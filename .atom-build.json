@@ -1,0 +1,9 @@
+{
+    "cmd": "gulp",
+    "name": "default",
+    "args": ["default"],
+    "sh": true,
+    "env": {
+        "NODE_ENV": "development"
+    }
+}

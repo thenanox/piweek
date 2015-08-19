@@ -7,22 +7,22 @@
                 // Powwows state routing
                 $stateProvider.
                 state('listPowwows', {
-                        url: '/powwows',
+                        url: '/',
                         templateUrl: 'app/powwows/views/list-powwows.html'
                     })
                     .
                 state('createPowwow', {
-                        url: '/powwows/create',
+                        url: '/create',
                         templateUrl: 'app/powwows/views/create-powwow.html'
                     })
                     .
                 state('viewPowwow', {
-                        url: '/powwows/:powwowId',
+                        url: '/:powwowId',
                         templateUrl: 'app/powwows/views/view-powwow.html'
                     })
                     .
                 state('editPowwow', {
-                    url: '/powwows/:powwowId/edit',
+                    url: '/:powwowId/edit',
                     templateUrl: 'app/powwows/views/edit-powwow.html'
                 });
             }
