@@ -22,5 +22,5 @@
             hideSidenav : hideSidenav
         };
     }
-    angular.module('sideNav').service('sideNavService', sideNavService);
+    angular.module('sideNavDirective').service('sideNavService', sideNavService);
 }());
