@@ -22,7 +22,11 @@ var fs = require('fs'),
 	flash = require('connect-flash'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
-	path = require('path');
+	path = require('path'),
+	jwt = require("express-jwt"),
+	unless = require('express-unless'),
+	utils = require('./utils'),
+	NotFoundError = require("../app/core/NotFoundError.js");
 
 module.exports = function(db) {
 	// Initialize express app
@@ -58,13 +62,6 @@ module.exports = function(db) {
 	// Showing stack errors
 	app.set('showStackError', true);
 
-	// Set swig as the template engine
-	app.engine('server.view.html', consolidate[config.templateEngine]);
-
-	// Set views path and view engine
-	app.set('view engine', 'server.view.html');
-	app.set('views', './app/views');
-
 	// Environment dependent middleware
 	if (process.env.NODE_ENV === 'development') {
 		// Enable logger (morgan)
@@ -81,6 +78,9 @@ module.exports = function(db) {
 		extended: true
 	}));
 	app.use(bodyParser.json());
+	
+	app.use(require('response-time')());
+	
 	app.use(methodOverride());
 
 	// CookieParser should be above session
@@ -96,7 +96,10 @@ module.exports = function(db) {
 			collection: config.sessionCollection
 		})
 	})); */
-
+	
+	app.use('/api', jwt({secret: config.secret}));
+	app.use('/api', utils.middleware());
+	
 	// use passport session
 	app.use(passport.initialize());
 	app.use(passport.session());
@@ -119,26 +122,31 @@ module.exports = function(db) {
 		require(path.resolve(routePath))(app);
 	});
 
-	// Assume 'not found' in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
-	app.use(function(err, req, res, next) {
-		// If the error object doesn't exists
-		if (!err) return next();
-
-		// Log it
-		console.error(err.stack);
-
-		// Error page
-		res.status(500).render('500', {
-			error: err.stack
-		});
+	app.all("*", function (req, res, next) {
+		next(new NotFoundError("404"));
 	});
 
-	// Assume 404 since no middleware responded
-	app.use(function(req, res) {
-		res.status(404).render('404', {
-			url: req.originalUrl,
-			error: 'Not Found'
-		});
+	// Assume 'not found' in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
+	app.use(function(err, req, res, next) {
+		var code = 500,
+        msg = { message: "Internal Server Error" };
+
+		switch (err.name) {
+			case "UnauthorizedError":
+				code = err.status;
+				msg = undefined;
+				break;
+			case "BadRequestError":
+			case "UnauthorizedAccessError":
+			case "NotFoundError":
+				code = err.status;
+				msg = err.inner;
+				break;
+			default:
+				break;
+		}
+	
+		return res.status(code).json(msg);
 	});
 
 	if (process.env.NODE_ENV === 'secure') {
@@ -148,11 +156,15 @@ module.exports = function(db) {
 		// Load SSL key and certificate
 		var privateKey = fs.readFileSync('./config/sslcerts/key.pem', 'utf8');
 		var certificate = fs.readFileSync('./config/sslcerts/cert.pem', 'utf8');
+		var ca = fs.readFileSync('./config/sslcerts/ca.pem', 'utf8');
 
 		// Create HTTPS Server
 		var httpsServer = https.createServer({
 			key: privateKey,
-			cert: certificate
+			cert: certificate,
+			ca: ca,
+			requestCert: true,
+			rejectUnauthorized: false
 		}, app);
 
 		// Return HTTPS server instance

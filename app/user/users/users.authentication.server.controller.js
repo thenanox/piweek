@@ -6,12 +6,13 @@
 var _ = require('lodash'),
 	errorHandler = require('../../core/errors.server.controller'),
 	passport = require('passport'),
-	User = require('../user.server.model.js');
+	User = require('../user.server.model.js'),
+	utils = require('../../../config/utils');
 
 /**
  * Signup
  */
-exports.signup = function(req, res) {
+exports.signup = function(req, res, next) {
 	// For security measurement we remove the roles from the req.body object
 	delete req.body.roles;
 
@@ -37,6 +38,7 @@ exports.signup = function(req, res) {
 				if (err) {
 					res.status(400).send(err);
 				} else {
+					utils.create(user, req, res, next);
 					res.json(user);
 				}
 			});
@@ -60,6 +62,7 @@ exports.signin = function(req, res, next) {
 				if (err) {
 					res.status(400).send(err);
 				} else {
+					utils.create(user, req, res, next);
 					res.json(user);
 				}
 			});
@@ -71,6 +74,7 @@ exports.signin = function(req, res, next) {
  * Signout
  */
 exports.signout = function(req, res) {
+	utils.expires(req.headers);
 	req.logout();
 	res.redirect('/');
 };
