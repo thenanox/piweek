@@ -96,7 +96,7 @@ module.exports = function(db) {
 		})
 	})); */
 	
-	app.use('/api', jwt({secret: config.secret}));
+	// app.use('/api', jwt({secret: config.secret}));
 	
 	// use passport session
 	app.use(passport.initialize());
