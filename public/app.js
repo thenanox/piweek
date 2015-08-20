@@ -25,7 +25,7 @@
         .config(['$locationProvider', function ($locationProvider) {
             $locationProvider.hashPrefix('!');
         }]);
-
+        
     //Then define the init function for starting up the application
     angular.element(document)
         .ready(function () {

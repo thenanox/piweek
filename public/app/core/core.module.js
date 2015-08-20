@@ -8,5 +8,10 @@
                 // Redirect to home view when route not found
                 $urlRouterProvider.otherwise('/');
             }
-        ]);
+        ]).config(
+            ['$httpProvider', function ($httpProvider) {
+                // Set up $http interceptors
+                $httpProvider.interceptors.push('jwtInterceptor');
+            }]
+        );
 }());
