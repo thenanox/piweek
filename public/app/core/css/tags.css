@@ -33,6 +33,6 @@ input {
 }
 
 input:focus {
-    border-bottom: 2px solid #CDDC39;
+    border-bottom: 1px solid #CDDC39;
 }
 

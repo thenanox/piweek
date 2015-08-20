@@ -19,3 +19,22 @@
 .powwows-list {
     padding: 10px 25px;
 }
+
+.powwow-animation.ng-move,
+.powwow-animation.ng-enter,
+.powwow-animation.ng-leave {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.powwow-animation.ng-leave.ng-leave-active,
+.powwow-animation.ng-move,
+.powwow-animation.ng-enter {
+  opacity:0;
+}
+
+.powwow-animation.ng-leave,
+.powwow-animation.ng-move.ng-move-active,
+.powwow-animation.ng-enter.ng-enter-active {
+  opacity:1;
+}
