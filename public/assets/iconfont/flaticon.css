@@ -1,0 +1,38 @@
+@font-face {
+	font-family: "Flaticon";
+	src: url("flaticon.ttf") format("truetype"),
+	font-weight: normal;
+	font-style: normal;
+}
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+	font-family: Flaticon;
+        font-size: 20px;
+font-style: normal;
+}.flaticon-computer257:before {
+	content: "\e000";
+}
+.flaticon-logotype5:before {
+	content: "\e001";
+}
+.flaticon-mac3:before {
+	content: "\e002";
+}
+.flaticon-penguin1:before {
+	content: "\e003";
+}
+.flaticon-sony1:before {
+	content: "\e004";
+}
+.flaticon-technology36:before {
+	content: "\e005";
+}
+.flaticon-video-game4:before {
+	content: "\e006";
+}
+.flaticon-window24:before {
+	content: "\e007";
+}
+.flaticon-xbox23:before {
+	content: "\e008";
+}
