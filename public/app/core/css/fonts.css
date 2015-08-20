@@ -38,3 +38,7 @@
     font-family: KnewaveOutline;
     src: url(../../../assets/fonts/knewave-outline-webfont.ttf);
 }
+@font-face {
+    font-family: Flaticon;
+    src: url(../../../assets/fonts/flaticon.ttf);
+}
