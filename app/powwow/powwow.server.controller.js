@@ -139,9 +139,25 @@ exports.reject = function(req, res) {
  * List of powwows
  */
 exports.list = function(req, res) { 
+	if (req.query.userId){
+		Powwow.filter(function(powwow) {
+   			return powwow("subscribers").contains(req.query.userId);
+		}).run().then(function(powwows){
+			res.jsonp(powwows);
+		}).error(function(err){
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		});	
+	}
+	
 	Powwow.run().then(function(powwows) {
 			res.jsonp(powwows);
-	});
+		}).error(function (err){
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		});
 };
 
 /**
