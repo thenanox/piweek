@@ -5,7 +5,7 @@
     angular.module('powwows')
         .factory('Powwows', ['$resource',
             function ($resource) {
-                return $resource('powwows/:powwowId', {
+                return $resource('api/powwows/:powwowId', {
                     powwowId: '@id'
                 }, {
                     update: {

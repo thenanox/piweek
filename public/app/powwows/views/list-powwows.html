@@ -1,27 +1,13 @@
 <section data-ng-controller="PowwowsController" data-ng-init="find()">
     <section class="powwows-header flex-container align-space-around">
-        <div class="filter-container">    
+        <div class="filter-container">
         </div>
         <div class="search-container flex-container align-end">
             <input placeholder="Search">
         </div>
     </section>
     <section class="powwows-list flex-container align-space-around row-wrap">
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
-        <div powwow></div>
+        <div data-powwow="powwow" data-ng-repeat="powwow in powwows"></div>
     </section>
     <!-- <div class="list-group">
         <a data-ng-repeat="powwow in powwows" data-ng-href="#!/powwows/{{powwow._id}}" class="list-group-item">
