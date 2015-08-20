@@ -7,7 +7,10 @@ var _ = require('lodash'),
 	errorHandler = require('../../core/errors.server.controller'),
 	passport = require('passport'),
 	User = require('../user.server.model.js'),
-	utils = require('../../../config/utils');
+	config = require('../../../config/config'),
+	jsonwebtoken = require('jsonwebtoken'),
+	TOKEN_EXPIRATION = 60,
+    TOKEN_EXPIRATION_SEC = TOKEN_EXPIRATION * 60;
 
 /**
  * Signup
@@ -38,7 +41,7 @@ exports.signup = function(req, res, next) {
 				if (err) {
 					res.status(400).send(err);
 				} else {
-					utils.create(user, req, res, next);
+					signJWT(user);
 					res.json(user);
 				}
 			});
@@ -50,7 +53,7 @@ exports.signup = function(req, res, next) {
  * Signin after passport authentication
  */
 exports.signin = function(req, res, next) {
-	passport.authenticate('local', function(err, user, info) {
+	passport.authenticate('local', { session: false }, function(err, user, info) {
 		if (err || !user) {
 			res.status(400).send(info);
 		} else {
@@ -62,7 +65,7 @@ exports.signin = function(req, res, next) {
 				if (err) {
 					res.status(400).send(err);
 				} else {
-					utils.create(user, req, res, next);
+					signJWT(user);
 					res.json(user);
 				}
 			});
@@ -70,11 +73,16 @@ exports.signin = function(req, res, next) {
 	})(req, res, next);
 };
 
+var signJWT = function(user){
+	user.token = jsonwebtoken.sign({ username: user.username }, config.secret, {
+ 	   expiresInMinutes: TOKEN_EXPIRATION
+    });
+}
+
 /**
  * Signout
  */
 exports.signout = function(req, res) {
-	utils.expires(req.headers);
 	req.logout();
 	res.redirect('/');
 };

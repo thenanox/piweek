@@ -25,7 +25,6 @@ var fs = require('fs'),
 	path = require('path'),
 	jwt = require("express-jwt"),
 	unless = require('express-unless'),
-	utils = require('./utils'),
 	NotFoundError = require("../app/core/NotFoundError.js");
 
 module.exports = function(db) {
@@ -98,7 +97,6 @@ module.exports = function(db) {
 	})); */
 	
 	app.use('/api', jwt({secret: config.secret}));
-	app.use('/api', utils.middleware());
 	
 	// use passport session
 	app.use(passport.initialize());
