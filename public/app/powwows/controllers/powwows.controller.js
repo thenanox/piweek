@@ -3,8 +3,8 @@
 
     // Powwows controller
     angular.module('powwows')
-        .controller('PowwowsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Powwows',
-            function ($scope, $stateParams, $location, Authentication, Powwows) {
+        .controller('PowwowsController', ['$scope', '$stateParams', '$state', '$location', 'Authentication', 'Powwows',
+            function ($scope, $stateParams, $state, $location, Authentication, Powwows) {
                 $scope.authentication = Authentication;
 
                 // Create new Powwow
@@ -71,6 +71,10 @@
                         powwowId: $stateParams.powwowId
                     });
                 };
+
+                $scope.goTo = function (state) {
+                    $state.go(state);
+                }
             }
         ]);
 }());
