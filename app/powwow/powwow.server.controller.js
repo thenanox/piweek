@@ -142,7 +142,7 @@ exports.list = function(req, res) {
 	if (req.query.userId){
 		Powwow.filter(function(powwow) {
    			return powwow('subscribers').contains(req.query.userId);
-		}).sortBy('time').run().then(function(powwows){
+		}).sortBy('time', true).run().then(function(powwows){
 			res.jsonp(powwows);
 		}).error(function(err){
 			return res.status(400).send({
@@ -151,7 +151,7 @@ exports.list = function(req, res) {
 		});
 	}
 
-	Powwow.sortBy('time').run().then(function(powwows) {
+	Powwow.sortBy('time', true).run().then(function(powwows) {
 			res.jsonp(powwows);
 		}).error(function (err){
 			return res.status(400).send({
