@@ -64,6 +64,10 @@ body {
     color: #FAFAFA;
 }
 
+.flat-btn-success {
+    color: #4CAF50;
+}
+
 .flat-btn-info {
     color: #01579B;
 }
@@ -80,6 +84,11 @@ body {
 .raised-btn-primary {
     color: #212121;
     background-color: #FAFAFA;
+}
+
+.raised-btn-success {
+    color: #212121;
+    background-color: #4CAF50;
 }
 
 .raised-btn-info {
