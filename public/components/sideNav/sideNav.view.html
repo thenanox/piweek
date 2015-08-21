@@ -7,6 +7,6 @@
 </header>
 <section class="menu-items flex-container column center-content align-space-around">
 </section>
-<section class="menu-bottom flex-container column center-content align-end">
-    <button class="raised-btn raised-btn-warning logout-button">Log out</button>
+<section class="menu-bottom flex-container column center-content align-end" data-ng-controller="AuthenticationController">
+    <button class="raised-btn raised-btn-warning logout-button" data-ng-click="signout()">Log out</button>
 </section>

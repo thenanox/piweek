@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module('users')
-        .controller('AuthenticationController', ['$scope', '$http', '$location', 'Authentication',
-            function ($scope, $http, $location, Authentication) {
+        .controller('AuthenticationController', ['$scope', '$http', '$window', '$location', 'Authentication',
+            function ($scope, $http, $window, $location, Authentication) {
                 // If user is signed in then redirect back home
                 if (Authentication.getUserData()) $location.path('/');
 
@@ -31,6 +31,21 @@
 
                             // And redirect to the index page
                             $location.path('/');
+                        })
+                        .error(function (response) {
+                            $scope.error = response.message;
+                        });
+                };
+
+
+                $scope.signout = function () {
+                    $http.get('/auth/signout')
+                        .success(function () {
+                            // If successful we remove the jwt
+                            Authentication.removeJwt();
+
+                            // And reload page
+                            $window.location.reload(true);
                         })
                         .error(function (response) {
                             $scope.error = response.message;

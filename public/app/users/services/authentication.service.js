@@ -18,6 +18,10 @@
                     $window.localStorage.setItem(jwtItemName, jwtItemValuePreffix + jwt);
                 };
 
+                Authentication.removeJwt = function () {
+                    $window.localStorage.removeItem(jwtItemName);
+                };
+
                 Authentication.getUserData = function () {
                     return user.data;
                 };
