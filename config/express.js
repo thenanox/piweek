@@ -23,14 +23,14 @@ var fs = require('fs'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
 	path = require('path'),
-	jwt = require("express-jwt"),
+	jwt = require('express-jwt'),
 	unless = require('express-unless'),
-	NotFoundError = require("../app/core/NotFoundError.js");
+	NotFoundError = require('../app/core/NotFoundError.js');
 
 module.exports = function(db) {
 	// Initialize express app
 	var app = express();
-	
+
 	// Globbing model files
 	config.getGlobbedFiles('./app/**/*model*.js').forEach(function(modelPath) {
 		require(path.resolve(modelPath));
@@ -77,9 +77,9 @@ module.exports = function(db) {
 		extended: true
 	}));
 	app.use(bodyParser.json());
-	
+
 	app.use(require('response-time')());
-	
+
 	app.use(methodOverride());
 
 	// CookieParser should be above session
@@ -95,9 +95,9 @@ module.exports = function(db) {
 			collection: config.sessionCollection
 		})
 	})); */
-	
-	// app.use('/api', jwt({secret: config.secret}));
-	
+
+	app.use('/api', jwt({secret: config.secret}));
+
 	// use passport session
 	app.use(passport.initialize());
 	app.use(passport.session());
@@ -120,30 +120,30 @@ module.exports = function(db) {
 		require(path.resolve(routePath))(app);
 	});
 
-	app.all("*", function (req, res, next) {
-		next(new NotFoundError("404"));
+	app.all('*', function (req, res, next) {
+		next(new NotFoundError('404'));
 	});
 
 	// Assume 'not found' in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
 	app.use(function(err, req, res, next) {
 		var code = 500,
-        msg = { message: "Internal Server Error" };
+        msg = { message: 'Internal Server Error' };
 
 		switch (err.name) {
-			case "UnauthorizedError":
+			case 'UnauthorizedError':
 				code = err.status;
 				msg = undefined;
 				break;
-			case "BadRequestError":
-			case "UnauthorizedAccessError":
-			case "NotFoundError":
+			case 'BadRequestError':
+			case 'UnauthorizedAccessError':
+			case 'NotFoundError':
 				code = err.status;
 				msg = err.inner;
 				break;
 			default:
 				break;
 		}
-	
+
 		return res.status(code).json(msg);
 	});
 
