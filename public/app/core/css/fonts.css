@@ -1,44 +1,36 @@
 @font-face {
-    font-family: OstrichSansBlack;
-    src: url(../../../assets/fonts/ostrich-sans-black.ttf);
-}
-@font-face {
-    font-family: OstrichSansBold;
-    src: url(../../../assets/fonts/ostrich-sans-bold.ttf);
-}
-@font-face {
-    font-family: OstrichSansDashed;
-    src: url(../../../assets/fonts/ostrich-sans-dashed.ttf);
-}
-@font-face {
-    font-family: OstrichSansBoldInlineItalic;
-    src: url(../../../assets/fonts/ostrich-sans-inline-italic.ttf);
-}
-@font-face {
-    font-family: OstrichSansInlineRegular;
-    src: url(../../../assets/fonts/ostrich-sans-inline-regular.ttf);
-}
-@font-face {
-    font-family: OstrichSansLight;
-    src: url(../../../assets/fonts/ostrich-sans-light.ttf);
-}
-@font-face {
-    font-family: OstrichSansRegular;
-    src: url(../../../assets/fonts/ostrich-sans-regular.ttf);
-}
-@font-face {
-    font-family: OstrichSansLightRounded;
-    src: url(../../../assets/fonts/ostrich-sans-rounded.ttf);
-}
-@font-face {
-    font-family: Knewave;
-    src: url(../../../assets/fonts/knewave-webfont.ttf);
-}
-@font-face {
     font-family: KnewaveOutline;
     src: url(../../../assets/fonts/knewave-outline-webfont.ttf);
 }
+
 @font-face {
     font-family: Flaticon;
     src: url(../../../assets/fonts/flaticon.ttf);
+}
+
+@font-face {
+    font-family: Roboto-Regular;
+    src: url(../../../assets/fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(http://fonts.gstatic.com/s/materialicons/v7/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    word-wrap: normal;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    vertical-align: middle;
 }

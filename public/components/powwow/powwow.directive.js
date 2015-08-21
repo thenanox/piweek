@@ -25,9 +25,7 @@
                         imageUrl = image;
                     });
                     return imageUrl;
-                }
-                $scope.obtainImageUrl();
-            }]
+                }            }]
         };
     }
     angular.module('powwowDirective', []).directive('powwow', powwowDirective);
