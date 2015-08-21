@@ -24,6 +24,8 @@ var User = thinky.createModel('User',{
 	salt: type.buffer(),
 	resetPasswordToken: type.string(),
 	resetPasswordExpires: type.date()
+}, {
+    pk: "username"
 });
 
 /**
