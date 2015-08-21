@@ -83,6 +83,8 @@
     "mocha": "latest",
     "require-dir": "latest",
     "requirejs": "latest",
+    "request": "^2.61.0",
+    "semaphore": "^1.0.3",
     "should": "~4.1.0",
     "supertest": "~0.14.0",
     "through": "latest"
