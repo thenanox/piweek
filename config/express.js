@@ -98,7 +98,7 @@ module.exports = function(db) {
 		})
 	})); */
 
-	/*app.use('/api', jwt({secret: config.secret}));*/
+	app.use('/api', jwt({secret: config.secret}));
 
 	// use passport session
 	app.use(passport.initialize());
@@ -148,7 +148,7 @@ module.exports = function(db) {
 
 		return res.status(code).json(msg);
 	});
-		
+
 	if (process.env.NODE_ENV === 'secure') {
 		// Log SSL usage
 		console.log('Securely using https protocol');

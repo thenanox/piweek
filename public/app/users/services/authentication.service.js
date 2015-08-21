@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    var jwtItemName = 'jwt',
+    var userDataItemName = 'usr',
+        jwtItemName = 'jwt',
         jwtItemValuePreffix = 'Bearer ';
 
     // Authentication service for user variables
     angular.module('users')
         .service('Authentication', ['$window', function ($window) {
-                var Authentication = this,
-                    user = {};
+                var Authentication = this;
 
                 Authentication.getJwt = function () {
                     return $window.localStorage.getItem(jwtItemName);
@@ -23,11 +23,17 @@
                 };
 
                 Authentication.getUserData = function () {
-                    return user.data;
+                    var aux = JSON.parse($window.localStorage.getItem(userDataItemName));
+                    delete aux.token;
+                    return aux;
                 };
 
                 Authentication.setUserData = function (data) {
-                    user.data = data;
+                    $window.localStorage.setItem(userDataItemName, JSON.stringify(data));
+                };
+
+                Authentication.removeUserData = function (data) {
+                    $window.localStorage.removeItem(userDataItemName);
                 };
             }
         ]);
