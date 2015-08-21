@@ -16,7 +16,7 @@ var Game = thinky.createModel('Game', {
 	title: type.string(),
 	content: type.string(),
 	userId: type.string(),
-},{init:true});
+});
 
 User.hasMany(Game, 'Game', 'id', 'userId');
 Game.belongsTo(User, 'user', 'userid', 'id');

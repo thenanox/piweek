@@ -1,13 +1,9 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-var users = require('../user/users.server.controller'),
-	games = require('./game.server.controller');
 
 module.exports = function(app) {
-	// game Routes
+	var games = require('./game.server.controller');
+
 	app.route('/api/games')
 		.get(games.list)
 		.post(games.create);
