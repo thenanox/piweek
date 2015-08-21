@@ -1,15 +1,20 @@
 (function () {
     'use strict';
 
-    angular.module('core')
-        .controller('HeaderController', ['sideNavService', function (sideNavService) {
-            var userCap = angular.element('.user-cap');
+    function HeaderController($scope, SideNavService, Authentication) {
+        var userCap = angular.element('.user-cap');
+        $scope.userData = Authentication.getUserData(); 
 
-            function showMenu () {
-                sideNavService.showSidenav('menu');
-            }
-
-            userCap.on('click', showMenu);
+        function showMenu () {
+            SideNavService.showSidenav('menu');
         }
-    ]);
+
+        $scope.isLogged = function () {
+            return $scope.userData;
+        }
+
+        userCap.on('click', showMenu);
+    }
+
+    angular.module('core').controller('HeaderController', ['$scope', 'SideNavService', 'Authentication', HeaderController]);
 }());
