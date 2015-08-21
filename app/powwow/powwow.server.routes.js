@@ -2,7 +2,7 @@
 
 module.exports = function(app) {
 	var powwow = require('./powwow.server.controller');
-	
+		
 	app.route('/api/powwows')
 		.get(powwow.list)
 		.post(powwow.create);

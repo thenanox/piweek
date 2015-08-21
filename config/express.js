@@ -25,7 +25,9 @@ var fs = require('fs'),
 	path = require('path'),
 	jwt = require("express-jwt"),
 	unless = require('express-unless'),
-	NotFoundError = require("../app/core/NotFoundError.js");
+	NotFoundError = require("../app/core/NotFoundError.js"),
+	//TESTING PURPOSES
+	Powwow = require('../app/powwow/powwow.server.model');
 
 module.exports = function(db) {
 	// Initialize express app
@@ -146,7 +148,7 @@ module.exports = function(db) {
 	
 		return res.status(code).json(msg);
 	});
-
+		
 	if (process.env.NODE_ENV === 'secure') {
 		// Log SSL usage
 		console.log('Securely using https protocol');
@@ -170,9 +172,35 @@ module.exports = function(db) {
 	}
 
 	var server = http.createServer(app);
+	app.set('server', server);
 	var io = socketio.listen(server);
 	app.set('socketio', io);
-	app.set('server', server);
+	realtimelist(io);
 	// Return Express server instance
 	return app;
 };
+
+/**
+ * Realtime list
+ */
+function realtimelist(io){
+	Powwow.changes().then(function(feed) {
+		feed.each(function(error, doc) {
+			if (error) {
+			console.log(error);
+			}
+
+			if (doc.isSaved() === false) {
+			io.emit('removal',doc.getOldValue());
+			}
+			else if (doc.getOldValue() == null) {
+			io.emit('addition',doc);
+			}
+			else {
+			io.emit('modification',doc.getOldValue(), doc);
+			}
+		});
+	}).error(function(error) {
+		console.log(error);
+	});
+}
