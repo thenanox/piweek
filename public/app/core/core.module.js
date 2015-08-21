@@ -3,15 +3,10 @@
 
     // Setting up route
     angular.module('core', [])
-        .config(['$stateProvider', '$urlRouterProvider',
-            function ($stateProvider, $urlRouterProvider) {
-                // Redirect to home view when route not found
-                $urlRouterProvider.otherwise('/');
-            }
-        ]).config(
-            ['$httpProvider', function ($httpProvider) {
-                // Set up $http interceptors
-                $httpProvider.interceptors.push('jwt.interceptor');
-            }]
-        );
+        .config(['$urlRouterProvider', function ($urlRouterProvider) {
+            $urlRouterProvider.otherwise('/');
+        }])
+        .config(['$httpProvider', function ($httpProvider) {
+            $httpProvider.interceptors.push('jwt.interceptor');
+        }]);
 }());

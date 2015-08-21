@@ -3,8 +3,8 @@
 
     // Powwows controller
     angular.module('powwows')
-        .controller('PowwowsController', ['$scope', '$stateParams', '$state', '$location', 'Authentication', 'Powwows',
-            function ($scope, $stateParams, $state, $location, Authentication, Powwows) {
+        .controller('PowwowsController', ['$scope', '$stateParams', '$state', '$location', 'Authentication', 'Powwows', 'Socket',
+            function ($scope, $stateParams, $state, $location, Authentication, Powwows, Socket) {
                 $scope.authentication = Authentication;
 
                 // Create new Powwow
@@ -61,8 +61,34 @@
                 };
 
                 // Find a list of Powwows
+                function add(powwow) {
+                    $scope.powwows.unshift(powwow);
+                }
+
+                function splice(powwow, remove) {
+                    for (var i = 0, l = $scope.powwows.length; i < l; i += 1) {
+                        if ($scope.powwows[i].id === powwow.id) {
+                            if (remove) $scope.powwows.splice(i, 1);
+                            else $scope.powwows.splice(i, 1, powwow);
+                            break;
+                        }
+                    }
+                }
+
+                function modify(powwow) {
+                    splice(powwow);
+                }
+
+                function remove(powwow) {
+                    splice(powwow, remove);
+                }
+
                 $scope.find = function () {
                     $scope.powwows = Powwows.query();
+                    Socket
+                        .on('addition', add)
+                        .on('modification', modify)
+                        .on('removal', remove);
                 };
 
                 // Find existing Powwow
@@ -74,7 +100,7 @@
 
                 $scope.goTo = function (state) {
                     $state.go(state);
-                }
+                };
             }
         ]);
 }());
