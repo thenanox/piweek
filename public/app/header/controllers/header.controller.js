@@ -2,7 +2,6 @@
     'use strict';
 
     function HeaderController($scope, SideNavService, Authentication) {
-        $scope.userData = Authentication.getUserData(); 
         var userCap = angular.element('[user-cap]');
 
         function showMenu () {
@@ -10,8 +9,8 @@
         }
 
         $scope.isLogged = function () {
-            return $scope.userData;
-        }
+            return Authentication.getUserData();
+        };
 
         userCap.on('click', showMenu);
     }
