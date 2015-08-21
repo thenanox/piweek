@@ -23,9 +23,11 @@
                 };
 
                 Authentication.getUserData = function () {
-                    var aux = JSON.parse($window.localStorage.getItem(userDataItemName));
-                    delete aux.token;
-                    return aux;
+                    try {
+                        return JSON.parse($window.localStorage.getItem(userDataItemName));
+                    } catch(ignore) {
+                        return null;
+                    }
                 };
 
                 Authentication.setUserData = function (data) {
