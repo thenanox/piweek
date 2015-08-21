@@ -45,7 +45,7 @@ exports.update = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		});
-		
+
 };
 
 /**
@@ -67,9 +67,9 @@ exports.delete = function(req, res) {
  * Update subscribers of a powwow
  */
 exports.subscribe = function(req, res) {
-		
+
 	var powwow = req.powwow;
-	
+
 	powwow.subscribers = _.union(powwow.subscribers, req.body);
 
 	powwow.save().then(function(powwow){
@@ -85,9 +85,9 @@ exports.subscribe = function(req, res) {
  * Unsuscribe from a powwow
  */
 exports.unsubscribe = function(req, res) {
-	
+
 	var powwow = req.powwow;
-	
+
 	powwow.subscribers = _.difference(powwow.subscribers , req.body);
 
 	powwow.save().then(function(powwow){
@@ -103,9 +103,9 @@ exports.unsubscribe = function(req, res) {
  * Accept a subscription of a powwow
  */
 exports.accept = function(req, res) {
-	
+
 	var powwow = req.powwow;
-	
+
 	powwow.accepted = _.union(powwow.accepted, req.body);
 
 	powwow.save().then(function(powwow){
@@ -121,9 +121,9 @@ exports.accept = function(req, res) {
  * Reject a subscription of a powwow
  */
 exports.reject = function(req, res) {
-	
+
 	var powwow = req.powwow;
-	
+
 	powwow.accepted = _.difference(powwow.accepted , req.body);
 
 	powwow.save().then(function(powwow){
@@ -138,20 +138,20 @@ exports.reject = function(req, res) {
 /**
  * List of powwows
  */
-exports.list = function(req, res) { 
+exports.list = function(req, res) {
 	if (req.query.userId){
 		Powwow.filter(function(powwow) {
-   			return powwow("subscribers").contains(req.query.userId);
-		}).run().then(function(powwows){
+   			return powwow('subscribers').contains(req.query.userId);
+		}).sortBy('time', true).run().then(function(powwows){
 			res.jsonp(powwows);
 		}).error(function(err){
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
-		});	
+		});
 	}
-	
-	Powwow.run().then(function(powwows) {
+
+	Powwow.sortBy('time', true).run().then(function(powwows) {
 			res.jsonp(powwows);
 		}).error(function (err){
 			return res.status(400).send({
@@ -163,20 +163,20 @@ exports.list = function(req, res) {
 /**
  * powwow middleware
  */
-exports.powwowByID = function(req, res, next, id) { 
-	
+exports.powwowByID = function(req, res, next, id) {
+
 	Powwow.get(id).run().then(function(data) {
 		if (! data){
-			return next(new Error('Failed to load powwow ' + id));	
+			return next(new Error('Failed to load powwow ' + id));
 		} else{
 			req.powwow = data ;
 			next();
 		}
-		
+
 	}).error(function(err){
 		return next(err);
-	})
-		
+	});
+
 };
 
 /**
