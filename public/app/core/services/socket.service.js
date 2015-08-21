@@ -4,7 +4,7 @@
 
     var socketUrl = 'http://localhost:3000';
 
-    angular.module('socket')
+    angular.module('core')
         .service('Socket', function () {
             return io.connect(socketUrl);
         });
