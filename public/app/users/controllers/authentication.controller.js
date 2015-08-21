@@ -4,8 +4,9 @@
     angular.module('users')
         .controller('AuthenticationController', ['$scope', '$http', '$window', '$location', 'Authentication',
             function ($scope, $http, $window, $location, Authentication) {
+                $scope.user = Authentication.getUserData();
                 // If user is signed in then redirect back home
-                if (Authentication.getUserData()) $location.path('/');
+                if ($scope.user) $location.path('/');
 
                 $scope.signup = function () {
                     $http.post('/auth/signup', $scope.credentials)
@@ -37,10 +38,12 @@
                         });
                 };
 
-
                 $scope.signout = function () {
                     $http.get('/auth/signout')
                         .success(function () {
+                            // If successful we remove the userData
+                            Authentication.removeUserData();
+
                             // If successful we remove the jwt
                             Authentication.removeJwt();
 

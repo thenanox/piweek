@@ -1,11 +1,14 @@
 <header class="menu-header flex-container column center-content align-space-around">
     <button class="menu-toggle active">Toggle Menu</button>
     <div class="user-cap">
-        <i class="glyphicon glyphicon-user"></i>
+        <i class="material-icons">face</i>
     </div>
     <h3>username</h3>
 </header>
+</section>
 <section class="menu-items flex-container column center-content align-space-around">
+<section class="menu flex-container column center-content align-start" data-ng-controller="AuthenticationController">
+    <a class="raised-btn raised-btn-primary profile-button" href="#!/settings/profile">Profile</a>
 </section>
 <section class="menu-bottom flex-container column center-content align-end" data-ng-controller="AuthenticationController">
     <button class="raised-btn raised-btn-warning logout-button" data-ng-click="signout()">Log out</button>

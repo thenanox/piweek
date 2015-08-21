@@ -8,12 +8,13 @@
     z-index: 1030;
 }
 
-.header span.title {
+.header a.title {
     color: #FAFAFA;
     font-family: KnewaveOutline;
     font-size: 30px;
     position: relative;
     top: 13px;
+    cursor: pointer;
 }
 
 .header .corporative-logo {
@@ -22,6 +23,7 @@
     line-height: 20px;
     height: 55px;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 .header .user-cap {

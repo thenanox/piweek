@@ -47,6 +47,15 @@
     margin-bottom: 0px;
 }
 
+[side-nav] .menu {
+    position: absolute;
+    width: 100%;
+}
+
+[side-nav] .menu .profile-button {
+    border-radius: 0px;
+    width: 100%;
+}
 [side-nav] .menu-bottom {
     bottom: 0;
     position: absolute;

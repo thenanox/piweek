@@ -20,6 +20,10 @@ button a {
     color: inherit;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 button a:hover, button a:focus, button a:visited, button a:active {
     text-decoration: none;
     color: inherit;

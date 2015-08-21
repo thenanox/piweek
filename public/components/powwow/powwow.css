@@ -90,34 +90,58 @@
     transform: translateX(-50%) translateY(-50%);
 }
 
+@media (max-width: 768px) {
+    .powwow-detail-dialog {
+        width: 90%;
+        height: 95%;
+    }
+}
+
 .powwow-detail-dialog .powwow-detail-dialog-content {
     height: 100%;
 }
 
-.powwow-detail-dialog .powwow-detail-dialog-content .closed-icon {
+.powwow-detail-dialog .closed-icon {
     position: absolute;
     top: -16px;
     right: -16px;
     font-size: 30px;
     cursor: pointer;
+    z-index: 1033;
 }
 
-.powwow-detail-dialog .powwow-detail-dialog-content .cover-game {
-    width: 900px;
-    background-size: contain;
-    height: 100%;
+.powwow-detail-dialog .cover-game {
+    border: 1px solid;
+    width: 35%;
 }
 
-.powwow-detail-dialog .powwow-detail-dialog-content .info-powwow {
-    padding: 0px 30px;
+@media (max-width: 768px) {
+    .powwow-detail-dialog .cover-game {
+        border: 1px solid;
+        width: 100%;
+        height: 30%;
+    }
 }
 
-.powwow-detail-dialog .powwow-detail-dialog-content .info-powwow .more-info i {
-    margin-right: 15px;
+.powwow-detail-dialog .info-powwow {
+    width: 65%;
+    padding-left: 30px;
+    border: 1px solid green;
 }
 
-.powwow-detail-dialog .powwow-detail-dialog-content .info-powwow .more-info img {
-    width: 22px;
+@media (max-width: 768px) {
+    .powwow-detail-dialog-content {
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        -moz-flex-direction: column;
+        flex-direction: column;
+    }
+    .powwow-detail-dialog .info-powwow {
+        width: 100%;
+        height: 100%;
+        padding-left: 20px;
+        border: 1px solid green;
+    }
 }
 
 .animate {

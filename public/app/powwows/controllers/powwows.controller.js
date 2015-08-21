@@ -5,8 +5,6 @@
     angular.module('powwows')
         .controller('PowwowsController', ['$scope', '$stateParams', '$state', '$location', 'Authentication', 'Powwows', 'Socket',
             function ($scope, $stateParams, $state, $location, Authentication, Powwows, Socket) {
-                $scope.authentication = Authentication;
-
                 // Create new Powwow
                 $scope.create = function () {
                     // Create new Powwow object
@@ -77,9 +75,9 @@
                     }
                 }
 
-                function modify(oldPowwow, newPowwow) {
+                function modify(powwow) {
                     $scope.$apply(function () {
-                        splice(newPowwow);
+                        splice(powwow);
                     });
                 }
 
