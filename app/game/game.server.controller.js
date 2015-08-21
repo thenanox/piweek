@@ -10,16 +10,13 @@ var errorHandler = require('../core/errors.server.controller'),
  */
 exports.create = function (req, res) {
     var game = new Game(req.body);
-    game.user = req.user;
-    game.saveAll(function (err) {
-        if (err) {
-            return res.status(400).send({
+    
+    game.save().then(function (game) {
+         res.json(game);
+    }).error(function(err){
+        return res.status(400).send({
                 message: errorHandler.getErrorMessage(err)
-            });
-        }
-        else {
-            res.json(game);
-        }
+            });  
     });
 };
 /**
@@ -33,17 +30,16 @@ exports.read = function (req, res) {
  */
 exports.update = function (req, res) {
     var game = req.game;
-    game = _.extend(game, req.body);
-    game.saveAll(function (err) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        }
-        else {
-            res.json(game);
-        }
-    });
+    
+    game = _.extend(game , req.body);
+
+	game.save(function(game) {
+			res.jsonp(game);
+		}).error(function(err){
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		});
 };
 /**
  * Delete an game
@@ -65,29 +61,31 @@ exports.delete = function (req, res) {
  * List of games
  */
 exports.list = function (req, res) {
-    Game.get().sort('-created').populate('user', 'displayName').exec(function (err, games) {
-        if (err) {
-            return res.status(400).send({
-                message: errorHandler.getErrorMessage(err)
-            });
-        }
-        else {
-            res.json(games);
-        }
-    });
+    
+    Game.run().then(function(games) {
+			res.jsonp(games);
+		}).error(function (err){
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		});
 };
 /**
  * game middleware
  */
 exports.gameByID = function (req, res, next, id) {
-    Game.get(id).populate('user', 'displayName').exec(function (err, game) {
-        if (err)
-            return next(err);
-        if (!game)
-            return next(new Error('Failed to load game ' + id));
-        req.game = game;
-        next();
-    });
+    
+    Game.get(id).run().then(function(data) {
+		if (! data){
+			return next(new Error('Failed to load game ' + id));	
+		} else{
+			req.game = data;
+			next();
+		}
+		
+	}).error(function(err){
+		return next(err);
+	})
 };
 /**
  * game authorization middleware

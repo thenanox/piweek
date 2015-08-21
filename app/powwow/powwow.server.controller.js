@@ -12,15 +12,14 @@ var errorHandler = require('../core/errors.server.controller'),
  */
 exports.create = function(req, res) {
 	var powwow = new Powwow(req.body);
-	powwow.save(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(powwow);
-		}
-	});
+	
+	powwow.save().then(function(powwow){
+        	res.json(powwow);
+    	}).error(function(err){
+        	return res.status(400).send({
+                message: errorHandler.getErrorMessage(err)
+            });
+    	});
 };
 
 /**
@@ -38,7 +37,7 @@ exports.update = function(req, res) {
 
 	powwow = _.extend(powwow , req.body);
 
-	powwow.save(function(powwow) {
+	powwow.save().then(function(powwow) {
 			res.jsonp(powwow);
 		}).error(function(err){
 			return res.status(400).send({
@@ -54,7 +53,7 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
 	var powwow = req.powwow ;
 
-	powwow.remove(function(powwow) {
+	powwow.remove().then(function(powwow) {
 			res.jsonp(powwow);
 		}).error(function(err){
 			return res.status(400).send({

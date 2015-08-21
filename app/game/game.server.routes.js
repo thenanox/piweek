@@ -8,14 +8,14 @@ var users = require('../user/users.server.controller'),
 
 module.exports = function(app) {
 	// game Routes
-	app.route('/games')
+	app.route('/api/games')
 		.get(games.list)
-		.post(users.requiresLogin, games.create);
+		.post(games.create);
 
-	app.route('/games/:gameId')
+	app.route('/api/games/:gameId')
 		.get(games.read)
-		.put(users.requiresLogin, games.hasAuthorization, games.update)
-		.delete(users.requiresLogin, games.hasAuthorization, games.delete);
+		.put(games.update)
+		.delete(games.delete);
 
 	// Finish by binding the game middleware
 	app.param('gameId', games.gameByID);
