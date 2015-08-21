@@ -22,4 +22,12 @@ var Powwow = thinky.createModel('Powwow', {
 	accepted: type.array().schema(type.string())
 });
 
+Powwow.defineStatic('sortBy', function (field, reverse) {
+	if (field) {
+		return Powwow.orderBy(reverse ? r.desc(field) : field);
+	} else {
+		return Powwow;
+	}
+});
+
 module.exports = Powwow;

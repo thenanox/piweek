@@ -18,7 +18,14 @@
 
                     return a;
                 };
-            }]
+                $scope.obtainImageUrl = function() {
+                    var imageUrl;
+
+                    angular.forEach($scope.powwow.images, function (image) {
+                        imageUrl = image;
+                    });
+                    return imageUrl;
+                }            }]
         };
     }
     angular.module('powwowDirective', []).directive('powwow', powwowDirective);

@@ -11,7 +11,7 @@
         ]).config(
             ['$httpProvider', function ($httpProvider) {
                 // Set up $http interceptors
-                $httpProvider.interceptors.push('jwtInterceptor');
+                $httpProvider.interceptors.push('jwt.interceptor');
             }]
         );
 }());

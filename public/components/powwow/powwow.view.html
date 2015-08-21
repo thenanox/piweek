@@ -1,13 +1,12 @@
-<div class="powwow flex-container column">
+<div class="powwow flex-container column" data-ng-style="{'background-image':'url(' + obtainImageUrl() + ')'}">
     <header class="powwow-header flex-container align-center">
-        <img class="logo" src="assets/logos/fifa15.png">
+        <img class="logo" data-ng-src="{{powwow.logo}}">
     </header>
     <section class="powwow-description">
         <h1 data-ng-bind="powwow.game"></h1>
-        <!-- <h4 data-ng-bind="powwow.creator"></h4> -->
         <div class="more-info flex-container center-content align-start">
-            <i class="flaticon-video-game4"></i>
-            <img src="assets/icons/flags/uk.png">
+            <i class="flaticon-{{powwow.platform}}"></i>
+            <img ng-src="assets/icons/flags/{{powwow.language}}.png">
         </div>
         <p data-ng-bind="powwow.description"></p>
     </section>

@@ -3,30 +3,18 @@
         <div class="filter-container">
         </div>
         <div class="search-container flex-container align-end">
-            <input placeholder="Search">
+            <input placeholder="Search" ng-model="searchText">
         </div>
     </section>
     <section class="powwows-list flex-container align-space-around row-wrap">
-        <div data-powwow="powwow" data-ng-repeat="powwow in powwows"></div>
+        <div class="powwow-animation" data-powwow="powwow" data-ng-repeat="powwow in powwows | filter:searchText"></div>
     </section>
-    <!-- <div class="list-group">
-        <a data-ng-repeat="powwow in powwows" data-ng-href="#!/powwows/{{powwow._id}}" class="list-group-item">
-			<small class="list-group-item-text">
-				Posted on
-				<span data-ng-bind="powwow.time | date:'medium'"></span>
-				by
-				<span data-ng-bind="powwow.creator"></span>
-			</small>
-			<h4 class="list-group-item-heading" data-ng-bind="powwow.game"></h4>
-			<h5 class="list-group-item-heading" data-ng-bind="powwow.platform"></h5>
-            <p data-ng-bind="powwow.description"></p>
-            <small class="list-group-item-text">
-				<span data-ng-bind="powwow.slots"></span> slots left
-				(<span data-ng-bind="powwow.waitlist || '0'"></span> waiting)
-			</small>
-        </a>
-    </div>
-    <div class="alert alert-warning text-center" data-ng-hide="!powwows.$resolved || powwows.length">
+    <!-- <div class="alert alert-warning text-center" data-ng-hide="!powwows.$resolved || powwows.length">
     	No Powwows yet, why don't you <a href="/#!/powwows/create">create one</a>?
     </div> -->
+    <section class="fixed-action-button">
+        <button class="action-button action-button-primary" ng-click="goTo('createPowwow')">
+            <i class="material-icons">add</i>
+        </button>
+    </section>
 </section>
