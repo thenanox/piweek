@@ -8,7 +8,14 @@
     // Authentication service for user variables
     angular.module('users')
         .service('Authentication', ['$window', function ($window) {
-                var Authentication = this;
+                var Authentication = this,
+                    user = {};
+
+                try {
+                    user.data = JSON.parse($window.localStorage.getItem(userDataItemName));
+                } catch(ignore) {
+                    user.data = null;
+                }
 
                 Authentication.getJwt = function () {
                     return $window.localStorage.getItem(jwtItemName);
@@ -23,18 +30,16 @@
                 };
 
                 Authentication.getUserData = function () {
-                    try {
-                        return JSON.parse($window.localStorage.getItem(userDataItemName));
-                    } catch(ignore) {
-                        return null;
-                    }
+                    return user.data;
                 };
 
                 Authentication.setUserData = function (data) {
+                    user.data = data;
                     $window.localStorage.setItem(userDataItemName, JSON.stringify(data));
                 };
 
-                Authentication.removeUserData = function (data) {
+                Authentication.removeUserData = function () {
+                    user.data = null;
                     $window.localStorage.removeItem(userDataItemName);
                 };
             }
