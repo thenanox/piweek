@@ -13,7 +13,7 @@
                                 switch (rejection.status) {
                                 case 401:
                                     // Deauthenticate the global user
-                                    Authentication.user = null;
+                                    Authentication.removeUserData();
 
                                     // Redirect to signin page
                                     $location.path('signin');

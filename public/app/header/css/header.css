@@ -8,6 +8,12 @@
     z-index: 1030;
 }
 
+@media (max-width: 768px) {
+    .header {
+        padding: 10px 15px;
+    }
+}
+
 .header a.title {
     color: #FAFAFA;
     font-family: KnewaveOutline;
@@ -15,6 +21,12 @@
     position: relative;
     top: 13px;
     cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .header a.title {
+        font-size: 25px;
+    }
 }
 
 .header .corporative-logo {
@@ -26,12 +38,19 @@
     cursor: pointer;
 }
 
+@media (max-width: 768px) {
+    .header .corporative-logo {
+        height: 50px;
+    }
+}
+
 .header .user-cap {
     float: right;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     padding: 8px;
+    margin-top: 5px;
     cursor: pointer;
     border: 2px solid #FAFAFA;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -51,6 +70,7 @@
     float: right;
     height: 45px;
     margin-right: 25px;
+    margin-top: 5px;
 }
 
 .header .tools-container i {
@@ -61,4 +81,19 @@
 
 .header .tools-container button {
     font-size: 18px;
+}
+
+@media (max-width: 768px) {
+
+    .header .tools-container {
+        margin-right: 0px;
+    }
+
+    .header .tools-container .flat-btn {
+        min-height: 29px;
+        min-width: 75px;
+    }
+    .header .tools-container button {
+        font-size: 15px;
+    }
 }

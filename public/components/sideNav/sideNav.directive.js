@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    function sideNavDirective (sideNavService) {
+    function sideNavDirective (SideNavService) {
         return {
             templateUrl: 'components/sideNav/sideNav.view.html',
             link: function (scope, element) {
@@ -15,7 +15,7 @@
                 }
 
                 function hideSidenav () {
-                    sideNavService.hideSidenav('menu');
+                    SideNavService.hideSidenav('menu');
                 }
 
                 function onStateChangeStart() {
@@ -31,5 +31,5 @@
             }
         };
     }
-    angular.module('sideNavDirective', []).directive('sideNav', ['sideNavService', sideNavDirective]);
+    angular.module('sideNavDirective', []).directive('sideNav', ['SideNavService', sideNavDirective]);
 }());

@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    function sideNavService() {
+    function SideNavService() {
 
         function showSidenav (sidenavId) {
             angular.element('#' + sidenavId).removeClass('closed');
@@ -22,5 +22,5 @@
             hideSidenav : hideSidenav
         };
     }
-    angular.module('sideNavDirective').service('sideNavService', sideNavService);
+    angular.module('sideNavDirective').service('SideNavService', SideNavService);
 }());

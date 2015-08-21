@@ -1,10 +1,10 @@
 <div class="header" data-ng-controller="HeaderController">
 	<img class="corporative-logo" src="assets/icons/logoWhite.png", alt="powwowLogo">
 	<a class="title" href="/#!/"> POWWOW</a>
-	<div class="user-cap">
+	<div class="user-cap" data-ng-show="isLogged()">
 		<i class="material-icons">face</i>
 	</div>
-	<div class="tools-container flex-container center-content align-space-around">
+	<div class="tools-container flex-container center-content align-space-around" data-ng-hide="isLogged()">
 		<button class="flat-btn flat-btn-primary">
 		    <a href="/#!/signin">Log in</a>
 		</button>
