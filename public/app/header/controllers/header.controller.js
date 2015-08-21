@@ -2,8 +2,8 @@
     'use strict';
 
     function HeaderController($scope, SideNavService, Authentication) {
-        var userCap = angular.element('.user-cap');
         $scope.userData = Authentication.getUserData(); 
+        var userCap = angular.element('[user-cap]');
 
         function showMenu () {
             SideNavService.showSidenav('menu');

@@ -17,7 +17,8 @@
 		'users',
         'powwows',
         'sideNavDirective',
-        'powwowDirective'
+        'powwowDirective',
+        'userCapDirective'
     ]);
 
     // Setting HTML5 Location Mode
