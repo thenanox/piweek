@@ -62,7 +62,9 @@
 
                 // Find a list of Powwows
                 function add(powwow) {
-                    $scope.powwows.unshift(powwow);
+                    $scope.$apply(function () {
+                        $scope.powwows.unshift(powwow);
+                    });
                 }
 
                 function splice(powwow, remove) {
@@ -75,12 +77,16 @@
                     }
                 }
 
-                function modify(powwow) {
-                    splice(powwow);
+                function modify(oldPowwow, newPowwow) {
+                    $scope.$apply(function () {
+                        splice(newPowwow);
+                    });
                 }
 
                 function remove(powwow) {
-                    splice(powwow, remove);
+                    $scope.$apply(function () {
+                        splice(powwow, remove);
+                    });
                 }
 
                 $scope.find = function () {
