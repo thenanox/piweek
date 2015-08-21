@@ -17,6 +17,7 @@ module.exports = function(app) {
 		.put(games.update)
 		.delete(games.delete);
 
+
 	// Finish by binding the game middleware
 	app.param('gameId', games.gameByID);
 };
