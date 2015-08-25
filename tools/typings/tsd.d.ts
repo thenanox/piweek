@@ -8,3 +8,4 @@
 /// <reference path="serve-static/serve-static.d.ts" />
 /// <reference path="mime/mime.d.ts" />
 /// <reference path="rethinkdb/rethinkdb.d.ts" />
+/// <reference path="jasmine/jasmine.d.ts" />
