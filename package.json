@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "gulp",
-    "test": "./node_modules/.bin/jasmine",
+    "test": "jasmine",
     "postinstall": "bower install --config.interactive=false"
   },
   "dependencies": {
